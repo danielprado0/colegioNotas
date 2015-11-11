@@ -209,10 +209,10 @@ public class cursos extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton5)
-                                    .addComponent(jButton1)))
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel5))
                         .addContainerGap())))
         );
@@ -223,7 +223,7 @@ public class cursos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -246,7 +246,7 @@ public class cursos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,7 +294,7 @@ public class cursos extends javax.swing.JInternalFrame {
             
             this.jComboBox2.removeAllItems();
                 ResultSet 
-                consul456 = this.conect.consul("select grado.descripcion, grado.idGrado from grado inner join grado_carrera on grado.idGrado = grado_carrera.Grado_idGrado and grado_carrera.Carrera_idCarrera="+jc1.getElementAt(this.jComboBox1.getSelectedIndex())+" order by Grado_idGrado asc;" );
+                consul456 = this.conect.consul("select grado.descripcion, grado.id from grado order by grado.id asc;" );
                 jc2.removeAllElements();
                 while(consul456.next()){
                     this.jComboBox2.addItem(consul456.getString(1));
@@ -302,12 +302,15 @@ public class cursos extends javax.swing.JInternalFrame {
                 }
                 consul456.close();
                 //empiezan a cargarse los cursos
-                if(this.jComboBox1.getSelectedIndex()!=-1 && this.jComboBox2.getSelectedIndex() != -1){
-                    consul456 = conect.consul("select Id from grado_carrera where Grado_idGrado ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+" and Carrera_idCarrera ="+this.jc1.getElementAt(this.jComboBox1.getSelectedIndex())+";");
+                if ( this.jComboBox2.getSelectedIndex() != -1){
+                    consul456 = conect.consul("select grado.id from grado where gradoid ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+"");
                     if(consul456.next()){
                         int temp = consul456.getInt(1);
                         //select Nombre, idCursos, Estado from cursos where Grado_Carrera_Id = 13
-                        consul456 = conect.consul("select Nombre, idCursos, Estado, orden from cursos where Grado_Carrera_Id ="+temp+" order by orden; ");
+                        consul456 = conect.consul("SELECT curso.id, curso.descripcion, curso.grado_id FROM curso\n" +
+                        "inner join grado on curso.grado_id = grado.id\n" +
+                        "where grado_id =\n" +
+                        ""+temp+"order by curso.orden;");  
                         this.jl1.removeAllElements();
                         this.jl2.removeAllElements();
                         this.jl3.removeAllElements();
@@ -326,12 +329,9 @@ public class cursos extends javax.swing.JInternalFrame {
                     this.jl1.removeAllElements();
                     this.jList1.setModel(jl1);
                 }
-            
-                
         } catch (SQLException ex) {
             Logger.getLogger(cursos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

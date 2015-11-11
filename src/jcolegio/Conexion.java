@@ -19,7 +19,7 @@ public class Conexion {
     public  Conexion(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conect= DriverManager.getConnection("jdbc:mysql://192.168.10.35:3306/canem", "root", "");
+            conect= DriverManager.getConnection("jdbc:mysql://localhost/canem", "root", "");
             st = conect.createStatement();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ColegioNotas.class.getName()).log(Level.SEVERE, null, ex);
