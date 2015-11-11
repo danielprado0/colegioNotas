@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import jcolegio.Conexion;
 
 /**
@@ -36,7 +37,7 @@ public class cursos extends javax.swing.JInternalFrame {
                 consul456 = conect.consul("select grado.id from grado where grado.id ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+"");
                 if(consul456.next()){
                     int temp = consul456.getInt(1);
-                    //select Nombre, idCursos, Estado from cursos where Grado_Carrera_Id = 13
+                    
                     consul456 = conect.consul("SELECT curso.id, curso.descripcion, curso.grado_id, curso.orden FROM curso\n" +
                     "inner join grado on curso.grado_id = grado.id\n" +
                     "where grado_id ="+temp+" order by orden;");
@@ -195,9 +196,9 @@ public class cursos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 179, Short.MAX_VALUE)
+                                .addGap(0, 187, Short.MAX_VALUE)
                                 .addComponent(jButton3)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,21 +254,96 @@ public class cursos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       
+        if(this.jTextField1.getText().isEmpty() == false){
+            this.jTextField1.setText(this.jTextField1.getText().replace("'", "`"));
+            if(this.jButton5.getText().equals("Editar")){
+                int temp = this.jList1.getSelectedIndex();
+                this.jl1.removeElementAt(temp);
+                this.jl1.insertElementAt(this.jTextField1.getText(), temp);
+                this.jList1.setEnabled(true);
+                this.jButton2.setEnabled(true);
+                this.jButton5.setText("Agregar");
+                jButton6.setText("Modificar");
+                }else{
+                this.jl1.addElement(this.jTextField1.getText());
+                this.jl2.addElement(null);
+                this.jl3.addElement(1);
+            }
+            this.jTextField1.setText("");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        
+        if(this.jList1.getSelectedIndex()!=-1 && this.jButton6.getText().equals("Modificar")){
+            this.jTextField1.setText(this.jList1.getSelectedValue().toString());
+            this.jList1.setEnabled(false);
+            this.jButton2.setEnabled(false);
+            this.jButton5.setText("Editar");
+            
+            jButton6.setText("Cancelar");
+        }else{
+            if(this.jButton6.getText().equals("Cancelar")){
+                this.jList1.setEnabled(true);
+                this.jButton2.setEnabled(true);
+                this.jButton5.setText("Agregar");
+               
+                jButton6.setText("Modificar");
+            }
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        int temp = this.jList1.getSelectedIndex();
+        Object tempint2,tempint3,tempint4,tempint5, tempst1,tempst2;
+        tempst1 = this.jl1.getElementAt(temp -1);
+        tempint2 = this.jl2.getElementAt(temp-1);
+        tempint3 = this.jl3.getElementAt(temp-1);
+        tempst2 = this.jl1.getElementAt(temp);
+        tempint4 = this.jl2.getElementAt(temp);
+        tempint5 = this.jl3.getElementAt(temp);
+        jl1.removeElementAt(temp);
+        jl2.removeElementAt(temp);
+        jl3.removeElementAt(temp);
+        jl1.removeElementAt(temp-1);
+        jl2.removeElementAt(temp-1);
+        jl3.removeElementAt(temp-1);
+        jl1.insertElementAt(tempst2, temp-1);
+        jl2.insertElementAt(tempint4, temp-1);
+        jl3.insertElementAt(tempint5, temp-1);
+        jl1.insertElementAt(tempst1, temp);
+        jl2.insertElementAt(tempint2, temp);
+        jl3.insertElementAt(tempint3, temp);
+        this.jList1.setModel(jl1);
+        this.jList1.setSelectedIndex(temp-1);
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        int temp = this.jList1.getSelectedIndex();
+        Object tempint2,tempint3,tempint4,tempint5, tempst1,tempst2;
+        tempst1 = this.jl1.getElementAt(temp +1);
+        tempint2 = this.jl2.getElementAt(temp+1);
+        tempint3 = this.jl3.getElementAt(temp+1);
+        tempst2 = this.jl1.getElementAt(temp);
+        tempint4 = this.jl2.getElementAt(temp);
+        tempint5 = this.jl3.getElementAt(temp);
+        jl1.removeElementAt(temp+1);
+        jl2.removeElementAt(temp+1);
+        jl3.removeElementAt(temp+1);
+        jl1.removeElementAt(temp);
+        jl2.removeElementAt(temp);
+        jl3.removeElementAt(temp);
+        jl1.insertElementAt(tempst1, temp);
+        jl2.insertElementAt(tempint2, temp);
+        jl3.insertElementAt(tempint3, temp);
+        jl1.insertElementAt(tempst2, temp+1);
+        jl2.insertElementAt(tempint4, temp+1);
+        jl3.insertElementAt(tempint5, temp+1);
+        this.jList1.setModel(jl1);
+        this.jList1.setSelectedIndex(temp+1);
        
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -277,16 +353,67 @@ public class cursos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        
+        try {
+            Conexion conect1 = new Conexion();
+            if(this.jComboBox2.getSelectedIndex() != -1){
+                ResultSet consul5 = conect1.consul("select grado.id from grado;");
+                if(consul5.next()){
+                    int temp = consul5.getInt(1);
+                    
+                    consul5 = conect1.consul("select curso.descripcion, curso.id, curso.orden from curso where curso.grado_id ="+temp+" order by orden;");
+                    this.jl1.removeAllElements();
+                    this.jl2.removeAllElements();
+                    this.jl3.removeAllElements();
+                    while (consul5.next()){
+                        this.jl1.addElement(consul5.getString(1));
+                        this.jl2.addElement(consul5.getInt(2));
+                        this.jl3.addElement(consul5.getInt(3));
+                    }
+                }else{
+                    this.jl1.removeAllElements();
+                    this.jl2.removeAllElements();
+                    this.jl3.removeAllElements();
+                }
+                this.jList1.setModel(jl1);
+            }else{
+                this.jl1.removeAllElements();
+                this.jList1.setModel(jl1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(cursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
+       try {
+           if(this.jList1.getSelectedIndex()!= -1){
+                if(this.jl2.getElementAt(this.jList1.getSelectedIndex())==null){
+                    this.jl3.removeElementAt(this.jList1.getSelectedIndex());
+                    this.jl1.removeElementAt(this.jList1.getSelectedIndex());
+                }else{
+                    Conexion conect4 = new Conexion();
+                    ResultSet consul58 ;//1;
+                    consul58 = conect4.consul("select count(*) from nota where nota.curso_id = "+this.jl2.getElementAt(this.jList1.getSelectedIndex())+";");
+                    consul58.next();
+                    if(consul58.getInt(1)==0){
+                        this.jl3.removeElementAt(this.jList1.getSelectedIndex());
+                        this.jl2.removeElementAt(this.jList1.getSelectedIndex());
+                        this.jl1.removeElementAt(this.jList1.getSelectedIndex());
+                        
+                    }else{
+                        javax.swing.JOptionPane.showMessageDialog(rootPane, "No se puede eliminar este curso\nya que puede afectar a notas ya ingresadas\nsi quiere eliminarlo simplemente desactivelo", "Error", 0);
+                    }
+                }
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(cursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -306,7 +433,7 @@ public class cursos extends javax.swing.JInternalFrame {
                     consul456 = conect.consul("select grado.id from grado where gradoid ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+"");
                     if(consul456.next()){
                         int temp = consul456.getInt(1);
-                        //select Nombre, idCursos, Estado from cursos where Grado_Carrera_Id = 13
+
                         consul456 = conect.consul("SELECT curso.id, curso.descripcion, curso.grado_id FROM curso\n" +
                         "inner join grado on curso.grado_id = grado.id\n" +
                         "where grado_id =\n" +

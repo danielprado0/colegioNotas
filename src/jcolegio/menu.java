@@ -211,7 +211,11 @@ public class menu extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-      
+      if(jDesktopPane1.getIndexOf(v6) == -1) {
+               v6 = new jcolegio.Forms.exploradorAlumnos();
+               centrarVentana(v6);
+        } else { javax.swing.JOptionPane.showMessageDialog(rootPane, "La ventana ya está Abierta", "ERROR", 0, null);
+        }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -319,5 +323,6 @@ public class menu extends javax.swing.JFrame {
     jcolegio.Forms.cursos v3 = new jcolegio.Forms.cursos();
     jcolegio.Forms.grado v4 = new jcolegio.Forms.grado();
     jcolegio.Forms.usuarioContraseña v5 = new jcolegio.Forms.usuarioContraseña();
+    jcolegio.Forms.exploradorAlumnos v6 = new jcolegio.Forms.exploradorAlumnos();
     
 }
