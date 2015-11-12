@@ -108,7 +108,7 @@ public class cicloEscolar extends javax.swing.JInternalFrame {
          if(this.TextAño.getText().isEmpty() == false ){ //agregar && this.jTextField3.getText().isEmpty()==false
             try {
                 Conexion conec2 = new Conexion();
-                conec2.ingresar ("INSERT INTO cicloescolar (`año`) " + " VALUES  ('"+this.TextAño.getText()+"')");
+                conec2.ingresar ("INSERT INTO cicloescolar (`ano`) " + " VALUES  ('"+this.TextAño.getText()+"')");
                 javax.swing.JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente", "Guardando", 1);
                 this.dispose();
             } catch (SQLException ex) {

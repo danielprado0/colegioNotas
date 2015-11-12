@@ -19,6 +19,7 @@ public class menu extends javax.swing.JFrame {
      * Creates new form menu
      */
     public menu() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -146,6 +147,11 @@ public class menu extends javax.swing.JFrame {
         jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/banner_32.png"))); // NOI18N
         jMenuItem9.setText("Acerca de");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/session.png"))); // NOI18N
@@ -250,6 +256,15 @@ public class menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+          if(jDesktopPane1.getIndexOf(v7) == -1) {
+               v7 = new jcolegio.Forms.acercaDe();
+               centrarVentana(v7);
+        } else { javax.swing.JOptionPane.showMessageDialog(rootPane, "La ventana ya está Abierta", "ERROR", 0, null);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,5 +339,6 @@ public class menu extends javax.swing.JFrame {
     jcolegio.Forms.grado v4 = new jcolegio.Forms.grado();
     jcolegio.Forms.usuarioContraseña v5 = new jcolegio.Forms.usuarioContraseña();
     jcolegio.Forms.exploradorAlumnos v6 = new jcolegio.Forms.exploradorAlumnos();
+    jcolegio.Forms.acercaDe v7 = new jcolegio.Forms.acercaDe();
     
 }

@@ -337,13 +337,14 @@ public class cursos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                try{
+            try{
                 if(this.jComboBox2.getSelectedIndex()!= -1){
+                    int gradcarr =0;
                     Conexion con = new Conexion();
                     ResultSet consu ;
-                    consu = con.consul("select Id from grado_carrera where Grado_idGrado ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex()) +" and Carrera_idCarrera ="+this.jc1.getElementAt(this.jComboBox1.getSelectedIndex()) +";");
+                    consu = con.consul("select grado.id from grado where Grado_idGrado ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex()) +" and Carrera_idCarrera ="+this.jc1.getElementAt(this.jComboBox1.getSelectedIndex()) +";");
                     consu.next();
-                    
+                    gradcarr=consu.getInt(1);
                     if(this.jList1.getModel().getSize()==0){
                         consu =con.consul("select count(*) from cursos where Grado_Carrera_Id ="+gradcarr+";");
                         consu.next();
@@ -375,7 +376,6 @@ public class cursos extends javax.swing.JInternalFrame {
                 }else{
                     javax.swing.JOptionPane.showMessageDialog(rootPane, "Debe seleccionar a lo menos un grado", "Error", 0);
                 }
-          
         } catch (SQLException ex) {
             Logger.getLogger(cursos.class.getName()).log(Level.SEVERE, null, ex);
         }
