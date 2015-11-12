@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author osaomi
  */
-public class grado extends javax.swing.JInternalFrame {
+public final class grado extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Grado
@@ -25,10 +25,10 @@ public class grado extends javax.swing.JInternalFrame {
     public void Actualizar(){
         
         try {
-            ResultSet rs1;
-            rs1 = conect.consul("SELECT id, descripcion FROM canem.grado;");
             jcId.removeAllElements();
             jcDesc.removeAllElements();
+            ResultSet rs1;
+            rs1 = conect.consul("SELECT id, descripcion FROM canem.grado;");
             while(rs1.next()){
                 jcId.addElement(rs1.getObject(1));
                 jcDesc.addElement(rs1.getObject(2));
@@ -198,6 +198,11 @@ public class grado extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonEnviarG)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -205,15 +210,9 @@ public class grado extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(LabelGradoN)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(TextGradoN, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonEnviarG)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
-                        .addGap(19, 19, 19))))
+                                    .addComponent(TextGradoN, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +225,7 @@ public class grado extends javax.swing.JInternalFrame {
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(buttonEnviarG))
@@ -274,8 +273,9 @@ public class grado extends javax.swing.JInternalFrame {
                 Conexion conec2 = new Conexion();
                 conec2.ingresar ("INSERT INTO grado (`descripcion`) " + " VALUES  ('"+this.TextGradoN.getText()+"')");
                 javax.swing.JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente", "Guardando", 1);
-                TextGradoN.setText("");
                 Actualizar();
+                TextGradoN.setText("");
+                
             } catch (SQLException ex) {
                 Logger.getLogger(grado.class.getName()).log(Level.SEVERE, null, ex);
             }   

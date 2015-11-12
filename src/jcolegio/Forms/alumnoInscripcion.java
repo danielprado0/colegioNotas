@@ -154,8 +154,6 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
                 .addContainerGap(214, Short.MAX_VALUE))
         );
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,7 +244,7 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
 
     private void guardarInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInscripcionActionPerformed
         // TODO add your handling code here:
-        String fecha = new SimpleDateFormat ("dd/mm/yyyy").format(jDateChooser1.getDate());
+        String fecha = new SimpleDateFormat ("dd/MMM/yyyy").format(jDateChooser1.getDate());
         if(this.jTextFieldNombre.getText().isEmpty() == false && this.jTextFieldApellido.getText().isEmpty() == false ){ //agregar && this.jTextField3.getText().isEmpty()==false
             try {
                 Conexion conec2 = new Conexion();

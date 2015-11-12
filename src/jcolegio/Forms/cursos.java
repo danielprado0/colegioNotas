@@ -78,9 +78,7 @@ public class cursos extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jLabel5 = new javax.swing.JLabel();
@@ -112,23 +110,7 @@ public class cursos extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Curso:");
 
-        jButton7.setText("Arriba");
-        jButton7.setEnabled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         jTextField1.setToolTipText("");
-
-        jButton8.setText("Abajo");
-        jButton8.setEnabled(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -189,9 +171,7 @@ public class cursos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton8)
-                            .addComponent(jButton7))
+                            .addComponent(jButton6))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,16 +218,12 @@ public class cursos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)))
+                        .addComponent(jButton2)))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,6 +247,9 @@ public class cursos extends javax.swing.JInternalFrame {
             }
             this.jTextField1.setText("");
         }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Debe ingresar el nombre de un curso", "Error", 0);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -291,60 +270,6 @@ public class cursos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        int temp = this.jList1.getSelectedIndex();
-        Object tempint2,tempint3,tempint4,tempint5, tempst1,tempst2;
-        tempst1 = this.jl1.getElementAt(temp -1);
-        tempint2 = this.jl2.getElementAt(temp-1);
-        tempint3 = this.jl3.getElementAt(temp-1);
-        tempst2 = this.jl1.getElementAt(temp);
-        tempint4 = this.jl2.getElementAt(temp);
-        tempint5 = this.jl3.getElementAt(temp);
-        jl1.removeElementAt(temp);
-        jl2.removeElementAt(temp);
-        jl3.removeElementAt(temp);
-        jl1.removeElementAt(temp-1);
-        jl2.removeElementAt(temp-1);
-        jl3.removeElementAt(temp-1);
-        jl1.insertElementAt(tempst2, temp-1);
-        jl2.insertElementAt(tempint4, temp-1);
-        jl3.insertElementAt(tempint5, temp-1);
-        jl1.insertElementAt(tempst1, temp);
-        jl2.insertElementAt(tempint2, temp);
-        jl3.insertElementAt(tempint3, temp);
-        this.jList1.setModel(jl1);
-        this.jList1.setSelectedIndex(temp-1);
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        int temp = this.jList1.getSelectedIndex();
-        Object tempint2,tempint3,tempint4,tempint5, tempst1,tempst2;
-        tempst1 = this.jl1.getElementAt(temp +1);
-        tempint2 = this.jl2.getElementAt(temp+1);
-        tempint3 = this.jl3.getElementAt(temp+1);
-        tempst2 = this.jl1.getElementAt(temp);
-        tempint4 = this.jl2.getElementAt(temp);
-        tempint5 = this.jl3.getElementAt(temp);
-        jl1.removeElementAt(temp+1);
-        jl2.removeElementAt(temp+1);
-        jl3.removeElementAt(temp+1);
-        jl1.removeElementAt(temp);
-        jl2.removeElementAt(temp);
-        jl3.removeElementAt(temp);
-        jl1.insertElementAt(tempst1, temp);
-        jl2.insertElementAt(tempint2, temp);
-        jl3.insertElementAt(tempint3, temp);
-        jl1.insertElementAt(tempst2, temp+1);
-        jl2.insertElementAt(tempint4, temp+1);
-        jl3.insertElementAt(tempint5, temp+1);
-        this.jList1.setModel(jl1);
-        this.jList1.setSelectedIndex(temp+1);
-       
-    }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
@@ -412,7 +337,48 @@ public class cursos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+                try{
+                if(this.jComboBox2.getSelectedIndex()!= -1){
+                    Conexion con = new Conexion();
+                    ResultSet consu ;
+                    consu = con.consul("select Id from grado_carrera where Grado_idGrado ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex()) +" and Carrera_idCarrera ="+this.jc1.getElementAt(this.jComboBox1.getSelectedIndex()) +";");
+                    consu.next();
+                    
+                    if(this.jList1.getModel().getSize()==0){
+                        consu =con.consul("select count(*) from cursos where Grado_Carrera_Id ="+gradcarr+";");
+                        consu.next();
+                        if(consu.getInt(1)==0){
+                            javax.swing.JOptionPane.showMessageDialog(rootPane, "Cambios Guardados", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
+                            con.ingresar("DELETE FROM `cursos` WHERE `Grado_Carrera_Id`="+gradcarr+";");
+                            javax.swing.JOptionPane.showMessageDialog(rootPane, "Cambios Guardados, se han eliminado todos los cursos", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }else{
+                        consu =con.consul("select idCursos from cursos where Grado_Carrera_Id ="+gradcarr+";");
+                        while (consu.next()){
+                            if(this.jl2.getIndexOf(consu.getInt(1))==-1){
+                                con.ingresar("DELETE FROM `cursos` WHERE `idCursos`="+consu.getInt(1)+";");
+                                consu =con.consul("select idCursos from cursos where Grado_Carrera_Id ="+gradcarr+";");
+                            }
+                        }
+                        for(int a =0; a<this.jl1.getSize();a++){
+                            if(this.jl2.getElementAt(a)==null){//para los nuevos
+                                con.ingresar("INSERT INTO `cursos` (`Nombre`, `Grado_Carrera_Id`, `Estado`, `Orden`) VALUES ('"+this.jl1.getElementAt(a)+"', "+gradcarr+", "+this.jl3.getElementAt(a)+", "+a+");");
+                            }else{//para los viejos
+                                
+                                con.ingresar("UPDATE `cursos` SET `Nombre`='"+this.jl1.getElementAt(a)+"', `Estado`="+this.jl3.getElementAt(a)+", `Orden`= "+a+" WHERE `idCursos`="+this.jl2.getElementAt(a)+";");
+                            }
+                        }
+                        javax.swing.JOptionPane.showMessageDialog(rootPane, "Cambios Guardados", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(rootPane, "Debe seleccionar a lo menos un grado", "Error", 0);
+                }
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(cursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -473,8 +439,6 @@ public class cursos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
