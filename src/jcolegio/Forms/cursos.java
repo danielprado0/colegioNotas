@@ -280,7 +280,6 @@ public class cursos extends javax.swing.JInternalFrame {
             this.jList1.setEnabled(false);
             this.jButton2.setEnabled(false);
             this.jButton5.setText("Editar");
-            
             jButton6.setText("Cancelar");
         }else{
             if(this.jButton6.getText().equals("Cancelar")){
@@ -430,7 +429,7 @@ public class cursos extends javax.swing.JInternalFrame {
                 consul456.close();
                 //empiezan a cargarse los cursos
                 if ( this.jComboBox2.getSelectedIndex() != -1){
-                    consul456 = conect.consul("select grado.id from grado where gradoid ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+"");
+                    consul456 = conect.consul("select grado.id from grado where grado.id ="+this.jc2.getElementAt(this.jComboBox2.getSelectedIndex())+"");
                     if(consul456.next()){
                         int temp = consul456.getInt(1);
 

@@ -11,6 +11,7 @@ import jcolegio.Conexion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,7 @@ public class grado extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(grado.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jcmbGradoActionPerformed(null);
     }
     public grado() {
         initComponents();
@@ -240,8 +242,8 @@ public class grado extends javax.swing.JInternalFrame {
 
     private void buttonEnviarGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEnviarGActionPerformed
         // TODO add your handling code here:
-        if(deleteItem){
-            try {
+        try {
+            if(deleteItem){
                 ResultSet rs1 = conect.consul("select sg.id, s.id from seccion as s inner join secciongrado as sg on sg.seccion_id = s.id where sg.grado_id = " + jcId.getElementAt(jcmbGrado.getSelectedIndex()));
                 while(rs1.next()){
                     if(jlAsigId.contains(rs1.getObject(2))==false){
@@ -249,9 +251,18 @@ public class grado extends javax.swing.JInternalFrame {
                         rs1 = conect.consul("select sg.id, s.id from seccion as s inner join secciongrado as sg on sg.seccion_id = s.id where sg.grado_id = " + jcId.getElementAt(jcmbGrado.getSelectedIndex()));
                     }
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(grado.class.getName()).log(Level.SEVERE, null, ex);
             }
+            for(int i=0; i<jlAsigId.getSize();i++){
+                ResultSet rs1 = conect.consul("select sg.id from secciongrado as sg  where sg.grado_id = " 
+                        + jcId.getElementAt(jcmbGrado.getSelectedIndex()) + " and sg.seccion_id = "+jlAsigId.getElementAt(i));
+                if(!(rs1.next())){
+                    conect.ingresar("INSERT INTO `canem`.`secciongrado` (`seccion_id`, `grado_id`) VALUES ("+jlAsigId.getElementAt(i)+", " 
+                        + jcId.getElementAt(jcmbGrado.getSelectedIndex()) + " );");
+                }
+            }
+            JOptionPane.showMessageDialog(rootPane, "Datos Ingresados", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(grado.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_buttonEnviarGActionPerformed
