@@ -22,35 +22,10 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
     /**
      * Creates new form alumnoInscripcion
      */
-     public void Actualizar(){
-        
-        try {
-            ResultSet rs1;
-            rs1 = conec.consul("SELECT id, descripcion FROM canem.grado;");
-            jcId.removeAllElements();
-            jcDesc.removeAllElements();
-            while(rs1.next()){
-                jcId.addElement(rs1.getObject(1));
-                jcDesc.addElement(rs1.getObject(2));
-            }
-           jcmbGrado.setModel(jcDesc);
-        
-            ResultSet rs2;
-            rs2 = conec.consul("SELECT cicloescolar.id, cicloescolar.ano FROM canem.cicloescolar;");
-            jYearId.removeAllElements();
-            jYearDesc.removeAllElements();
-            while (rs2.next()){
-                jYearId.addElement(rs2.getObject(1));
-                jYearDesc.addElement(rs2.getObject(2));
-                jcmbano.setModel(jYearDesc);
-            }
-            } catch (SQLException ex) {
-            Logger.getLogger(grado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+     
     public alumnoInscripcion() {
         initComponents();
-        Actualizar();
+        
     }
     
 
@@ -79,12 +54,6 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
         guardarInscripcion = new javax.swing.JButton();
         cerrarInscripcion = new javax.swing.JButton();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jcmbGrado = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jcmbano = new javax.swing.JComboBox();
-        jcmbsec = new javax.swing.JComboBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -111,7 +80,7 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Tipo de documento:");
 
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Documento de Identificación Personal (DPI)", "Partida de nacimiento", "Pasaporte" }));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Partida de nacimiento", "DPI", "Pasaporte" }));
         jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxActionPerformed(evt);
@@ -136,63 +105,6 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Asignación: Grado Seccion "));
-
-        jLabel4.setText("Grado");
-
-        jcmbGrado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbGradoActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Ciclo Escolar:");
-
-        jcmbano.setSelectedIndex(-1);
-        jcmbano.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbanoActionPerformed(evt);
-            }
-        });
-
-        jcmbsec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbsecActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jcmbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcmbano, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcmbsec, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jcmbano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcmbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jcmbsec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,34 +119,34 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
                         .addComponent(cerrarInscripcion))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldNombre)
                                     .addComponent(jTextFieldApellido)))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelDireccion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jtxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addComponent(jLabelDireccion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNumIdenti)))
+                                .addComponent(jtxtDireccion))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel19))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTelefono)
+                                    .addComponent(jTextFieldNumIdenti))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -258,9 +170,9 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
                     .addComponent(jLabelDireccion)
                     .addComponent(jtxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -269,9 +181,7 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cerrarInscripcion)
                     .addComponent(guardarInscripcion))
@@ -312,18 +222,6 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxActionPerformed
 
-    private void jcmbanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbanoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbanoActionPerformed
-
-    private void jcmbGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbGradoActionPerformed
-
-    }//GEN-LAST:event_jcmbGradoActionPerformed
-
-    private void jcmbsecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbsecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbsecActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cerrarInscripcion;
@@ -335,18 +233,12 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelDireccion;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldNumIdenti;
     private javax.swing.JTextField jTextFieldTelefono;
-    private javax.swing.JComboBox jcmbGrado;
-    private javax.swing.JComboBox jcmbano;
-    private javax.swing.JComboBox jcmbsec;
     private javax.swing.JTextField jtxtDireccion;
     // End of variables declaration//GEN-END:variables
     Conexion conec = new Conexion();
@@ -354,5 +246,8 @@ public class alumnoInscripcion extends javax.swing.JInternalFrame {
     javax.swing.DefaultComboBoxModel jcDesc = new javax.swing.DefaultComboBoxModel<>();
      javax.swing.DefaultComboBoxModel jYearId = new javax.swing.DefaultComboBoxModel<>();
     javax.swing.DefaultComboBoxModel jYearDesc = new javax.swing.DefaultComboBoxModel<>();
+    
+    javax.swing.DefaultComboBoxModel jc1 = new javax.swing.DefaultComboBoxModel<>();
+    javax.swing.DefaultComboBoxModel jc2 = new javax.swing.DefaultComboBoxModel<>();
     
 }

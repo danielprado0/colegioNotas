@@ -45,6 +45,8 @@ public class menu extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -75,7 +77,7 @@ public class menu extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Nuevo");
@@ -122,6 +124,20 @@ public class menu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu6.setText("Asignación");
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/teleconference.png"))); // NOI18N
+        jMenuItem10.setText("Alumnos a Grados");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu6);
 
         jMenu2.setText("Explorador");
 
@@ -265,6 +281,15 @@ public class menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+          if(jDesktopPane1.getIndexOf(v8) == -1) {
+               v8 = new jcolegio.Forms.inscripcionGrado();
+               centrarVentana(v8);
+        } else { javax.swing.JOptionPane.showMessageDialog(rootPane, "La ventana ya está Abierta", "ERROR", 0, null);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,10 +344,12 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -340,5 +367,7 @@ public class menu extends javax.swing.JFrame {
     jcolegio.Forms.usuarioContraseña v5 = new jcolegio.Forms.usuarioContraseña();
     jcolegio.Forms.exploradorAlumnos v6 = new jcolegio.Forms.exploradorAlumnos();
     jcolegio.Forms.acercaDe v7 = new jcolegio.Forms.acercaDe();
+    jcolegio.Forms.inscripcionGrado v8 = new jcolegio.Forms.inscripcionGrado();
+   
     
 }
